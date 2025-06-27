@@ -491,7 +491,7 @@ class UserHandlers:
             reply_markup = InlineKeyboardMarkup(keyboard)
 
             await update.message.reply_text(
-                "Начните заново:",
+                f"Постарайтесь избегать СТОП-СЛОВ: {stop_words} ",
                 reply_markup=reply_markup
             )
             return
