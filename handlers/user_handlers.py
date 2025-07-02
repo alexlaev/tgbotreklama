@@ -724,7 +724,7 @@ class UserHandlers:
 
         session_data = self.db.get_session_data(user_id)
         pub_type = session_data.get('publication_type', 'advertisement')
-        typecal_text = "должна публиковаться реклама" if pub_type == 'advertisement' else "должно публиковаться объявление"
+        typecal_text = "должно публиковаться рекламное объявление" if pub_type == 'advertisement' else "должно публиковаться объявление о работе"
 
         await query.edit_message_text(
         f"Введите время в которое {typecal_text} в формате ЧЧ:ММ",
@@ -746,7 +746,7 @@ class UserHandlers:
 
         session_data = self.db.get_session_data(user_id)
         pub_type = session_data.get('publication_type', 'advertisement')
-        typecal_text = "должна публиковаться реклама" if pub_type == 'advertisement' else "должно публиковаться объявление"
+        typecal_text = "должно публиковаться рекламное объявление" if pub_type == 'advertisement' else "должно публиковаться объявление о работе"
 
         await query.edit_message_text(
             f"Введите время в которое {typecal_text} в формате ЧЧ:ММ",
