@@ -612,13 +612,13 @@ class UserHandlers:
             )
 
             # Уведомляем пользователя
-            pub_type_text = "реклама" if pub_type == 'advertisement' else "объявление"
+            pub_type_text = "рекламное объявление" if pub_type == 'advertisement' else "объявление о работе"
             time_str = datetime.now().strftime("%d.%m.%Y в %H:%M")
             keyboard = [[InlineKeyboardButton("🏠 Главная", callback_data="main_menu")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
 
             await query.edit_message_text(
-                f"✅ Ваша {pub_type_text} опубликована {time_str}",
+                f"✅ Ваше {pub_type_text} опубликовано {time_str}",
                 reply_markup=reply_markup
             )
 
@@ -652,7 +652,7 @@ class UserHandlers:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        typecal_text = "должна публиковаться реклама" if pub_type == 'advertisement' else "должно публиковаться объявление"
+        typecal_text = "должно публиковаться рекламное объявление" if pub_type == 'advertisement' else "должно публиковаться объявление о работе"
         await query.edit_message_text(
             f"С какой периодичностью {typecal_text}?",
             reply_markup=reply_markup
@@ -688,7 +688,7 @@ class UserHandlers:
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
             pub_type = session_data.get('publication_type', 'advertisement')
-            typecal_text = "должна публиковаться реклама" if pub_type == 'advertisement' else "должно публиковаться объявление"
+            typecal_text = "должно публиковаться рекламное объявление" if pub_type == 'advertisement' else "должно публиковаться объявление о работе"
             await query.edit_message_text(
                 f"Выберите день недели в который {typecal_text}:",
                 reply_markup=reply_markup
@@ -999,7 +999,7 @@ class UserHandlers:
 
         # Уведомляем пользователя
         frequency_text = "сутки" if frequency == "daily" else "неделю"
-        pub_type_text = "Ваша реклама" if pub_type == "advertisement" else "Ваше объявление"
+        pub_type_text = "Ваше рекламное объявление" if pub_type == "advertisement" else "Ваше объявление о работе"
 
         if session_data.get('autopost_weekday') == 0:
             kogda = "каждый понедельник"
