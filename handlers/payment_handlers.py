@@ -69,7 +69,7 @@ class PaymentHandlers:
 
         return base_text + discount_text
 
-    async def process_payment_amount(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    async def process_payment_amount(self, service_type: str, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработка введенной суммы платежа"""
         user_id = update.effective_user.id
         text = update.message.text
@@ -90,12 +90,20 @@ class PaymentHandlers:
         self.db.save_session_data(user_id, session_data)
 
         # Показываем кнопки для оплаты
-        keyboard = [
-            [InlineKeyboardButton("💳 Перейти к оплате", callback_data=f"pay_{amount}")],
-            [InlineKeyboardButton("◀️ Назад", callback_data="back_to_pricing")]
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
+        if service_type == "advertisement":
+            keyboard = [
+                [InlineKeyboardButton("💳 Перейти к оплате", callback_data=f"pay_{amount}")],
+                [InlineKeyboardButton("◀️ Назад", callback_data="shop_advertisement")]
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+        else:
+            keyboard = [
+                [InlineKeyboardButton("💳 Перейти к оплате", callback_data=f"pay_{amount}")],
+                [InlineKeyboardButton("◀️ Назад", callback_data="shop_job")]
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
 
+        
         await update.message.reply_text(
             f"Оплата {int(amount)} рублей",
             reply_markup=reply_markup
