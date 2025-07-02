@@ -49,8 +49,8 @@ class UserHandlers:
         else:
             # Показываем приветственное сообщение для обычного пользователя
             keyboard = [[InlineKeyboardButton(
-                "Информация по размещению объявлений о работе и рекламных объявлений",
-                callback_data="info_publications"
+                "Создать публикацию",
+                callback_data="main_menu"
             )]]
             reply_markup = InlineKeyboardMarkup(keyboard)
 
