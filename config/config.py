@@ -47,12 +47,12 @@ def load_config() -> tuple[BotConfig, DatabaseConfig, PaymentConfig, PricingConf
     if not bot_token:
         # Для разработки используем тестовый токен
         print("⚠️  ВНИМАНИЕ: Используется тестовый токен! Установите BOT_TOKEN в переменные окружения для продакшена")
-        bot_token = "7642934797:AAH6uAq2HlIejo7xX8Tk_yBp-kYUcQrJytk"
+        bot_token = "7975420815:AAG6ZUdArXFBYENiRVovVZuf3xm7YlNcjRQ"
 
     group_id_str = os.getenv("GROUP_ID")
     if not group_id_str:
         print("⚠️  ВНИМАНИЕ: Используется тестовый GROUP_ID! Установите GROUP_ID в переменные окружения")
-        group_id = -1002850839936
+        group_id = -1001791196110
     else:
         try:
             group_id = int(group_id_str)
