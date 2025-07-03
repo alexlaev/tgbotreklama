@@ -395,15 +395,18 @@ class UserHandlers:
         # Сохраняем условия работы
         session_data = self.db.get_session_data(user_id)
         session_data['work_conditions'] = work_conditions
+        pub_type = session_data.get('publication_type')
         self.db.save_session_data(user_id, session_data)
 
+        if pub_type == 'job_offer':
+            next_text = "Опишите требования к претендентам:"
+        else:  # job_search
+            next_text = "Опишите требования к работодателю:"
+        
         keyboard = [[InlineKeyboardButton("◀️ Начать заново", callback_data="back_to_firm_type")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        await update.message.reply_text(
-            "Опишите требования к претендентам:",
-            reply_markup=reply_markup
-        )
+        await update.message.reply_text(next_text,reply_markup=reply_markup)
         self.db.update_user_state(user_id, UserState.ENTERING_REQUIREMENTS.value)
 
     async def process_requirements(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
